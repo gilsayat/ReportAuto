@@ -1,0 +1,14 @@
+version: 1.0.{build}
+image: Visual Studio 2022
+
+configuration: Release
+
+before_build:
+  - dotnet restore
+
+build_script:
+  - dotnet publish -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o ./publish
+
+artifacts:
+  - path: publish/ReportAutomator.exe
+    name: ReportAutomator
